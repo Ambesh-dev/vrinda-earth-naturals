@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vrinda Earth Naturals | 100% Organic Luxury Ayurvedic Skincare</title>
+  <meta name="description" content="Discover pure authentic Ayurvedic skincare essentials by Vrinda Earth Naturals. Handcrafted herbal Face Wash Powder, Magic Rose Water, and Magic Activator.">
+  
+  <!-- Google Fonts for Royal Ayurvedic Luxury Feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-content">
+      <div class="announcement-item">
+        <i class="fa-solid fa-leaf"></i> <span>100% Pure Organic Ayurvedic Formulations • Handcrafted in Small Batches</span>
+      </div>
+      <div class="announcement-item hidden-mobile">
+        <i class="fa-solid fa-truck-fast"></i> <span>Free Shipping on Orders Above ₹599</span>
+      </div>
+      <div class="announcement-item">
+        <i class="fa-brands fa-whatsapp"></i> <span>Direct WhatsApp Ordering Available: <strong>+91 98765 43210</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <div class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </div>
+
+      <a href="#hero" class="brand-logo-container">
+        <img src="assets/images/logo.png" alt="Vrinda Earth Naturals Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">VRINDA EARTH</span>
+          <span class="brand-subtitle">NATURALS</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <div class="nav-close-btn" id="navCloseBtn"><i class="fa-solid fa-xmark"></i></div>
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#products" class="nav-link">Our Essentials</a></li>
+          <li><a href="#ritual" class="nav-link">The 3-Step Ritual</a></li>
+          <li><a href="#purity" class="nav-link">Why Organic</a></li>
+          <li><a href="#founders" class="nav-link">Leadership</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/919876543210?text=Hello%20Vrinda%20Earth%20Naturals,%20I%20am%20interested%20in%20your%20organic%20skincare%20products!" target="_blank" class="btn-whatsapp-header" title="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span class="btn-text">WhatsApp Order</span>
+        </a>
+
+        <button class="cart-trigger-btn" id="cartTriggerBtn" aria-label="Open Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <a href="admin.html" class="btn-admin-pill" title="Store Admin Portal">
+          <i class="fa-solid fa-sliders"></i>
+          <span class="admin-text">Admin</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-pattern-bg"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fa-solid fa-spa"></i>
+            <span>Royal Ayurvedic Skincare</span>
+          </div>
+          <h1 class="hero-title">Experience the Power of <em>Pure, Authentic</em> Skincare</h1>
+          <p class="hero-description">
+            Directly from the manufacturer to your vanity. Formulated with authentic botanical herbs, natural multani mitti, pure wild rose extracts, and active herbal catalysts for a healthy, timeless glow.
+          </p>
+
+          <div class="hero-key-points">
+            <div class="point-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>100% Organic & Chemical Free</span>
+            </div>
+            <div class="point-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Suitable for All Skin Types</span>
+            </div>
+            <div class="point-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Manufacturer Direct Pricing</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="#products" class="btn btn-primary">
+              <span>Explore Products</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <button class="btn btn-secondary" onclick="openOrderModal(4)">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Order Royal Trio Combo</span>
+            </button>
+          </div>
+
+          <div class="hero-trust-metrics">
+            <div class="metric-card">
+              <span class="metric-number">100%</span>
+              <span class="metric-label">Ayurvedic Ingredients</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-card">
+              <span class="metric-number">0%</span>
+              <span class="metric-label">Parabens & Toxins</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-card">
+              <span class="metric-number">4.9 ★</span>
+              <span class="metric-label">Customer Satisfaction</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-card">
+            <div class="royal-seal">
+              <img src="assets/images/logo.png" alt="VE Seal">
+            </div>
+            <img src="assets/images/products_showcase.jpg" alt="Vrinda Earth Naturals Organic Skincare Essentials" class="hero-showcase-img">
+            
+            <div class="floating-pill pill-top">
+              <i class="fa-solid fa-droplet"></i>
+              <div>
+                <strong>Magic Rose Water</strong>
+                <p>Pure Steam Distilled</p>
+              </div>
+            </div>
+
+            <div class="floating-pill pill-bottom">
+              <i class="fa-solid fa-mortar-pestle"></i>
+              <div>
+                <strong>Face Wash Powder</strong>
+                <p>Fresh Herbal Cleanser</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section class="trust-strip">
+      <div class="container trust-strip-grid">
+        <div class="trust-badge-item">
+          <div class="badge-icon"><i class="fa-solid fa-seedling"></i></div>
+          <div class="badge-info">
+            <h4>100% Organic & Pure</h4>
+            <p>Direct botanical harvest without synthetic chemicals</p>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="badge-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <div class="badge-info">
+            <h4>Handcrafted in India</h4>
+            <p>Made with love & centuries-old Ayurvedic heritage</p>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="badge-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+          <div class="badge-info">
+            <h4>Safe & Eco Packaging</h4>
+            <p>Aesthetic glass jars preserving potency naturally</p>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="badge-info">
+            <h4>Zero Harsh Detergents</h4>
+            <p>Sulphate, paraben & SLS free daily cleanse</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Showcase & Ordering Section -->
+    <section class="products-section" id="products">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-sparkles"></i> Handcrafted Herbal Collection</div>
+          <h2 class="section-title">Our Signature Skincare Essentials</h2>
+          <p class="section-subtitle">Specially manufactured with unadulterated botanical powders, pure floral essences, and natural activators for flawless radiant skin.</p>
+        </div>
+
+        <!-- Product Filter Tabs -->
+        <div class="product-filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Products</button>
+          <button class="filter-btn" data-filter="cleanser">Cleansers & Powders</button>
+          <button class="filter-btn" data-filter="floral">Floral Toners</button>
+          <button class="filter-btn" data-filter="activator">Activators</button>
+          <button class="filter-btn" data-filter="combo">Special Combos 🔥</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+          <!-- Dynamically Rendered by JS with complete details -->
+        </div>
+
+        <!-- Special Combo Offer Banner -->
+        <div class="combo-featured-banner">
+          <div class="combo-banner-content">
+            <span class="banner-pill">🌟 Most Loved Bundle by Customers</span>
+            <h3 class="banner-title">The Royal Radiant Glow Kit (3-in-1 Trio)</h3>
+            <p class="banner-desc">Includes Herbal Face Wash Powder (100g) + Steam Distilled Magic Rose Water (100ml) + Magic Activator Elixir (50ml) + Luxury Wooden Mixing Spoon.</p>
+            <div class="combo-pricing">
+              <span class="combo-price">₹899</span>
+              <span class="combo-mrp">₹1,447</span>
+              <span class="combo-badge">Save 38% OFF</span>
+            </div>
+            <div class="banner-btn-group">
+              <button class="btn btn-primary" onclick="addToCart(4)">
+                <i class="fa-solid fa-cart-plus"></i> Add Combo to Bag
+              </button>
+              <button class="btn btn-whatsapp" onclick="directWhatsAppOrder(4)">
+                <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
+              </button>
+            </div>
+          </div>
+          <div class="combo-banner-image">
+            <img src="assets/images/products_showcase.jpg" alt="Vrinda Earth Naturals 3-in-1 Combo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 3-Step Ayurvedic Ritual Guide -->
+    <section class="ritual-section" id="ritual">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-moon"></i> Daily Skincare Regimen</div>
+          <h2 class="section-title">The Vrinda Earth 3-Step Daily Ritual</h2>
+          <p class="section-subtitle">How to blend and use our Ayurvedic essentials for maximum glow and pore refinement.</p>
+        </div>
+
+        <div class="ritual-steps-grid">
+          <div class="ritual-card">
+            <div class="step-number">01</div>
+            <div class="ritual-card-icon">
+              <i class="fa-solid fa-mortar-pestle"></i>
+            </div>
+            <h3 class="step-title">Scoop & Dispense</h3>
+            <p class="step-desc">
+              Take half a teaspoon of <strong>Vrinda Earth Herbal Face Wash Powder</strong> into your clean palm or a small wooden bowl.
+            </p>
+            <div class="step-highlight">
+              <i class="fa-solid fa-check"></i> Rich in Multani Mitti, Sandalwood & Neem
+            </div>
+          </div>
+
+          <div class="ritual-card active-card">
+            <div class="step-number">02</div>
+            <div class="ritual-card-icon">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="step-title">Infuse & Activate</h3>
+            <p class="step-desc">
+              Add 3 to 4 drops of <strong>Magic Activator</strong> and mist generously with <strong>Magic Rose Water</strong>. Mix into a silky, aromatic paste.
+            </p>
+            <div class="step-highlight">
+              <i class="fa-solid fa-check"></i> Unlocks bioactive plant antioxidants instantly
+            </div>
+          </div>
+
+          <div class="ritual-card">
+            <div class="step-number">03</div>
+            <div class="ritual-card-icon">
+              <i class="fa-solid fa-feather"></i>
+            </div>
+            <h3 class="step-title">Massage & Radiate</h3>
+            <p class="step-desc">
+              Gently massage onto damp face in upward circular strokes for 60 seconds. Rinse with cool water and pat dry with a soft cloth.
+            </p>
+            <div class="step-highlight">
+              <i class="fa-solid fa-check"></i> Reveals ultra-soft, oil-free, luminous skin
+            </div>
+          </div>
+        </div>
+
+        <div class="ritual-video-tip text-center">
+          <p><i class="fa-solid fa-lightbulb"></i> <strong>Pro Tip:</strong> For deep tanning or acne marks, leave the activated paste on your face for 5 minutes as a detoxifying Herbal Face Pack before washing off!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Organic & Pure Comparison -->
+    <section class="purity-section" id="purity">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-scale-balanced"></i> Honest Manufacturing</div>
+          <h2 class="section-title">Commercial Face Washes vs. Vrinda Earth</h2>
+          <p class="section-subtitle">Know what you put on your skin. We believe in complete transparency and botanical purity.</p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Parameters</th>
+                <th>Ordinary Market Face Washes</th>
+                <th class="highlight-col">Vrinda Earth Naturals 🌿</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cleansing Base</strong></td>
+                <td>Harsh Chemical Surfactants (SLS / SLES) that strip natural skin oils</td>
+                <td class="highlight-col"><i class="fa-solid fa-check-circle text-success"></i> 100% Herbal Clays & Botanical Powders</td>
+              </tr>
+              <tr>
+                <td><strong>Preservatives</strong></td>
+                <td>Chemical Parabens, Phenoxyethanol, DMDM Hydantoin</td>
+                <td class="highlight-col"><i class="fa-solid fa-check-circle text-success"></i> Zero Preservatives (Dry powder has naturally long shelf life)</td>
+              </tr>
+              <tr>
+                <td><strong>Fragrance</strong></td>
+                <td>Synthetic lab perfumes causing skin allergies</td>
+                <td class="highlight-col"><i class="fa-solid fa-check-circle text-success"></i> Natural fragrance of pure Damask Rose & Sandalwood</td>
+              </tr>
+              <tr>
+                <td><strong>Water Dilution</strong></td>
+                <td>80% tap water filled with artificial stabilizers</td>
+                <td class="highlight-col"><i class="fa-solid fa-check-circle text-success"></i> 100% active potent dry herbal powder + Pure steam floral water</td>
+              </tr>
+              <tr>
+                <td><strong>Skin Feel</strong></td>
+                <td>Stretchy, dry, oily rebound after few hours</td>
+                <td class="highlight-col"><i class="fa-solid fa-check-circle text-success"></i> Balanced pH, deeply cleansed, natural velvety glow</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders & Leadership Section -->
+    <section class="founders-section" id="founders">
+      <div class="container founders-grid">
+        <div class="founders-image-col">
+          <div class="founders-card-wrapper">
+            <img src="assets/images/products_showcase.jpg" alt="Vrinda Earth Naturals Leadership & Manufacturing" class="founders-feature-img">
+            <div class="founders-badge-box">
+              <span class="badge-title">Direct from Manufacturer</span>
+              <p>Authentic Quality • Small Batch Crafting</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="founders-content-col">
+          <div class="section-tag"><i class="fa-solid fa-heart"></i> Behind the Brand</div>
+          <h2 class="section-title">Crafted with Devotion, Backed by Integrity</h2>
+          <p class="founders-quote">
+            "Our journey started with a simple belief: Skincare should heal, nourish, and respect your body. No synthetic foams, no empty fillers—just the untamed power of Mother Earth."
+          </p>
+
+          <div class="leadership-cards">
+            <div class="leader-card">
+              <div class="leader-avatar">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <div class="leader-details">
+                <h4 class="leader-name">Shailja Shukla</h4>
+                <span class="leader-role">Owner & Master Formulator</span>
+                <p>Passionate Ayurvedic artisan dedicated to formulating gentle, uncompromised skincare remedies using ancient recipes.</p>
+              </div>
+            </div>
+
+            <div class="leader-card">
+              <div class="leader-avatar">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+              <div class="leader-details">
+                <h4 class="leader-name">Ambesh Shukla</h4>
+                <span class="leader-role">Management Director</span>
+                <p>Overseeing ethical sourcing, strict manufacturing standards, and direct-to-customer care across India.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="founders-guarantee">
+            <i class="fa-solid fa-certificate"></i>
+            <div>
+              <strong>100% Satisfaction & Authenticity Guarantee</strong>
+              <p>Manufactured under strict hygienic protocols with freshly ground natural ingredients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews & Testimonials -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-star"></i> Real Results</div>
+          <h2 class="section-title">Loved by Skincare Enthusiasts</h2>
+          <p class="section-subtitle">Real experiences from customers who switched to Vrinda Earth Naturals.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "Main bohot time se chemical face wash use kar rahi thi jisse acne ho rahe the. Vrinda Earth ka Face Wash Powder or Rose water use karke 1 week mein skin clear hone lagi! Such a pure natural product."
+            </p>
+            <div class="review-user">
+              <div class="user-avatar">P</div>
+              <div class="user-meta">
+                <h5>Pooja Sharma</h5>
+                <span>Verified Buyer • Jaipur</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "The Magic Activator + Face Wash Powder combination is brilliant! Meri oily skin ko bilkul balance kar diya bina kisi dryness ke. The natural herbal aroma is so calming."
+            </p>
+            <div class="review-user">
+              <div class="user-avatar">A</div>
+              <div class="user-meta">
+                <h5>Ananya Mishra</h5>
+                <span>Verified Buyer • Lucknow</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "Maine Trio Combo mangwaya tha WhatsApp se. Delivery bohot fast thi aur packaging super premium hai. Quality dekh kar lagta hai really genuine herbal manufacturer hai."
+            </p>
+            <div class="review-user">
+              <div class="user-avatar">R</div>
+              <div class="user-meta">
+                <h5>Rohan Verma</h5>
+                <span>Verified Buyer • Delhi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-circle-question"></i> Help & Answers</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about our products, ordering, and shipping.</p>
+        </div>
+
+        <div class="faq-accordion-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Is this face wash powder suitable for sensitive and acne-prone skin?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes, absolutely! Since our Face Wash Powder is 100% free from foaming detergents, sulphates, synthetic fragrances, and artificial colors, it is extremely soothing for sensitive, acne-prone, dry, or oily skin types.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>How do I order directly through WhatsApp?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Simply click on the "Order via WhatsApp" button on any product or from your cart. It automatically generates a ready-to-send message with your chosen products, quantities, and delivery address directly to our official WhatsApp helpline!</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>What is the shelf life of the Face Wash Powder and Rose Water?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Because our powder cleanser is dry and moisture-free in airtight jars, it stays naturally fresh for 18 months without chemical preservatives. Keep the cap tightly closed after each use and keep moisture away from the jar.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Do you offer Cash On Delivery (COD) across India?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </summary>
+            <div class="faq-answer">
+              <p>Yes, we ship all over India with Cash On Delivery (COD) as well as instant UPI/Bank payments. Free shipping is provided on all orders over ₹599.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Direct Order Help Strip -->
+    <section class="contact-strip" id="contact">
+      <div class="container contact-container">
+        <div class="contact-text">
+          <h3>Need Help Choosing or Custom Bulk Orders?</h3>
+          <p>Talk directly with our team for personalized product recommendations or wholesale/manufacturing inquiries.</p>
+        </div>
+        <div class="contact-actions">
+          <a href="https://wa.me/919876543210?text=Hello%20Shailja%20Ji%20/%20Ambesh%20Ji,%20I%20want%20to%20know%20more%20about%20Vrinda%20Earth%20Naturals" target="_blank" class="btn btn-whatsapp-lg">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp (+91 98765 43210)
+          </a>
+          <a href="tel:+919876543210" class="btn btn-outline-light">
+            <i class="fa-solid fa-phone"></i> Call Direct
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Luxury Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="Vrinda Earth Naturals">
+          <div class="footer-title">
+            <span>VRINDA EARTH</span>
+            <small>NATURALS</small>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          100% Organic Skincare Essentials. Pure herbal formulations manufactured with ancient botanical wisdom for royal radiant skin.
+        </p>
+        <div class="footer-leadership-tag">
+          <strong>Leadership:</strong>
+          <span>Owner: Shailja Shukla</span> • 
+          <span>Management Director: Ambesh Shukla</span>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#products">All Essentials</a></li>
+          <li><a href="#ritual">How to Use (Ritual)</a></li>
+          <li><a href="#purity">Why Choose Us</a></li>
+          <li><a href="#founders">About Founders</a></li>
+          <li><a href="#reviews">Customer Reviews</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-products-col">
+        <h4 class="footer-heading">Our Formulations</h4>
+        <ul class="footer-links">
+          <li><a href="#products" onclick="openQuickView(1)">Herbal Face Wash Powder</a></li>
+          <li><a href="#products" onclick="openQuickView(2)">Magic Rose Water Mist</a></li>
+          <li><a href="#products" onclick="openQuickView(3)">Magic Activator Elixir</a></li>
+          <li><a href="#products" onclick="openQuickView(4)">Royal Glow Trio Combo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact-col">
+        <h4 class="footer-heading">Manufacturing & Orders</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Manufactured & Packed in India</p>
+        <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fa-solid fa-envelope"></i> contact@vrindaearthnaturals.com</p>
+        <p><i class="fa-solid fa-clock"></i> Mon - Sat: 9:00 AM - 7:00 PM</p>
+        
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p>© 2026 Vrinda Earth Naturals. All Rights Reserved. Crafted with Botanical Purity. • <a href="admin.html" style="color:var(--color-gold); font-weight:600;"><i class="fa-solid fa-lock"></i> Owner Admin Portal</a></p>
+        <div class="payment-badges">
+          <span><i class="fa-solid fa-shield-halved"></i> 100% Safe Checkout</span>
+          <span><i class="fa-brands fa-google-pay"></i> UPI</span>
+          <span><i class="fa-solid fa-money-bill-wave"></i> COD</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+    <div class="cart-drawer-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Your Shopping Bag</h3>
+        <span class="cart-items-count" id="cartDrawerCount">(0 items)</span>
+      </div>
+      <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-free-shipping-bar">
+      <div class="shipping-progress-text" id="shippingProgressText">
+        Add ₹599 for Free Shipping!
+      </div>
+      <div class="shipping-progress-track">
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Empty State or Dynamic Cart Items -->
+    </div>
+
+    <div class="cart-drawer-footer" id="cartFooter">
+      <div class="cart-promo-section">
+        <div class="promo-input-group">
+          <input type="text" id="couponInput" placeholder="Coupon Code (Try: ROYAL10)" autocomplete="off">
+          <button class="btn-apply-coupon" onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="coupon-msg" id="couponMsg"></div>
+      </div>
+
+      <div class="cart-summary-breakdown">
+        <div class="summary-line">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">₹0</span>
+        </div>
+        <div class="summary-line discount-line" id="discountLine" style="display: none;">
+          <span>Discount Applied:</span>
+          <span id="cartDiscount">-₹0</span>
+        </div>
+        <div class="summary-line">
+          <span>Estimated Shipping:</span>
+          <span id="cartShipping">₹60</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Total Payable:</span>
+          <span id="cartTotal">₹0</span>
+        </div>
+      </div>
+
+      <div class="cart-action-buttons">
+        <button class="btn btn-primary btn-block" onclick="proceedToCheckoutModal()">
+          <i class="fa-solid fa-lock"></i> Proceed to Order
+        </button>
+        <button class="btn btn-whatsapp btn-block" onclick="checkoutViaWhatsAppDirect()">
+          <i class="fa-brands fa-whatsapp"></i> Order Cart on WhatsApp
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout & Order Modal -->
+  <dialog class="app-modal checkout-modal" id="checkoutModal">
+    <div class="modal-dialog-content">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <div>
+            <h3>Complete Your Order</h3>
+            <p>Direct manufacturer delivery to your doorstep</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="checkout-modal-body">
+        <div class="checkout-layout-grid">
+          <!-- Form Section -->
+          <form class="checkout-form" id="checkoutForm" onsubmit="handlePlaceOrder(event)">
+            <h4 class="form-section-title"><i class="fa-solid fa-user"></i> 1. Contact & Customer Details</h4>
+            <div class="form-row two-cols">
+              <div class="form-group">
+                <label for="custName">Full Name *</label>
+                <input type="text" id="custName" required placeholder="e.g. Priya Sharma" autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="custPhone">Mobile / Phone Number *</label>
+                <input type="tel" id="custPhone" required placeholder="e.g. 9876543210" pattern="[0-9]{10}" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="custEmail">Email Address (Optional)</label>
+              <input type="email" id="custEmail" placeholder="For order tracking updates" autocomplete="email">
+            </div>
+
+            <h4 class="form-section-title"><i class="fa-solid fa-truck"></i> 2. Delivery Address</h4>
+            <div class="form-group">
+              <label for="custAddress">House No, Building & Street Address *</label>
+              <textarea id="custAddress" required rows="2" placeholder="Full delivery address for courier delivery" autocomplete="street-address"></textarea>
+            </div>
+
+            <div class="form-row three-cols">
+              <div class="form-group">
+                <label for="custCity">City *</label>
+                <input type="text" id="custCity" required placeholder="City">
+              </div>
+              <div class="form-group">
+                <label for="custState">State *</label>
+                <input type="text" id="custState" required placeholder="State">
+              </div>
+              <div class="form-group">
+                <label for="custPincode">Pincode *</label>
+                <input type="text" id="custPincode" required pattern="[0-9]{6}" placeholder="6-digit Pincode" autocomplete="postal-code">
+              </div>
+            </div>
+
+            <h4 class="form-section-title"><i class="fa-solid fa-credit-card"></i> 3. Select Payment Method</h4>
+            <div class="payment-method-selector">
+              <label class="payment-option selected" onclick="selectPaymentMethod('COD', this)">
+                <input type="radio" name="paymentMethod" value="COD" checked>
+                <div class="payment-info">
+                  <strong>Cash On Delivery (COD)</strong>
+                  <span>Pay with cash when package reaches your doorstep</span>
+                </div>
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </label>
+
+              <label class="payment-option" onclick="selectPaymentMethod('UPI', this)">
+                <input type="radio" name="paymentMethod" value="UPI">
+                <div class="payment-info">
+                  <strong>UPI / QR Code Scan</strong>
+                  <span>Google Pay, PhonePe, Paytm or BHIM (Zero extra charges)</span>
+                </div>
+                <i class="fa-brands fa-google-pay"></i>
+              </label>
+
+              <label class="payment-option" onclick="selectPaymentMethod('WHATSAPP', this)">
+                <input type="radio" name="paymentMethod" value="WHATSAPP">
+                <div class="payment-info">
+                  <strong>Direct WhatsApp Order</strong>
+                  <span>Send order directly to Shailja Shukla / Ambesh Shukla</span>
+                </div>
+                <i class="fa-brands fa-whatsapp text-success"></i>
+              </label>
+            </div>
+
+            <!-- UPI Scan preview box if selected -->
+            <div class="upi-box" id="upiBox" style="display: none;">
+              <div class="upi-qr-card">
+                <div class="qr-placeholder">
+                  <i class="fa-solid fa-qrcode fa-4x"></i>
+                  <span>UPI ID: vrindaearth@upi</span>
+                </div>
+                <div class="upi-instructions">
+                  <p><strong>Scan QR code to pay</strong> using any UPI app.</p>
+                  <p class="text-muted">You will be prompted to enter transaction reference after placing order.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions-checkout">
+              <button type="submit" class="btn btn-primary btn-large btn-block" id="btnPlaceOrder">
+                <i class="fa-solid fa-check-circle"></i> Confirm & Place Order
+              </button>
+            </div>
+          </form>
+
+          <!-- Order Summary Sidebar in Checkout -->
+          <div class="checkout-summary-sidebar">
+            <h4>Order Summary</h4>
+            <div class="checkout-items-list" id="checkoutItemsList">
+              <!-- Rendered by JS -->
+            </div>
+            <div class="checkout-totals">
+              <div class="totals-row"><span>Items Total:</span> <span id="coSubtotal">₹0</span></div>
+              <div class="totals-row discount" id="coDiscountRow" style="display: none;"><span>Discount:</span> <span id="coDiscount">-₹0</span></div>
+              <div class="totals-row"><span>Delivery:</span> <span id="coShipping">₹60</span></div>
+              <div class="totals-row grand-total"><span>Grand Total:</span> <span id="coTotal">₹0</span></div>
+            </div>
+            <div class="trust-note-checkout">
+              <i class="fa-solid fa-leaf"></i>
+              <span>Authentic Ayurvedic Quality by Shailja Shukla & Ambesh Shukla</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Product Quick View Modal -->
+  <dialog class="app-modal quick-view-modal" id="quickViewModal">
+    <div class="modal-dialog-content">
+      <button class="modal-close-btn" onclick="closeQuickViewModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="quick-view-grid" id="quickViewContent">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Order Success Confirmation Modal -->
+  <dialog class="app-modal success-modal" id="successModal">
+    <div class="modal-dialog-content text-center">
+      <div class="success-icon-wrap">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="success-title">Order Confirmed! Thank You!</h3>
+      <p class="success-subtitle">Your order has been recorded at Vrinda Earth Naturals.</p>
+      
+      <div class="order-receipt-card">
+        <div class="receipt-header">
+          <span>Order ID: <strong id="successOrderId">VEN-2026-9841</strong></span>
+          <span class="status-badge">Processing</span>
+        </div>
+        <div class="receipt-body">
+          <p><strong>Customer:</strong> <span id="successCustName">Priya Sharma</span></p>
+          <p><strong>Total Amount:</strong> <span id="successTotal">₹899</span> (<span id="successPaymentType">Cash On Delivery</span>)</p>
+          <p><strong>Shipping To:</strong> <span id="successAddress">Jaipur, Rajasthan</span></p>
+          <p><strong>Estimated Delivery:</strong> 3-5 Business Days across India</p>
+        </div>
+      </div>
+
+      <div class="success-modal-actions">
+        <button class="btn btn-whatsapp" id="btnShareWhatsApp">
+          <i class="fa-brands fa-whatsapp"></i> Send Order Details to WhatsApp
+        </button>
+        <button class="btn btn-secondary" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print Invoice
+        </button>
+        <button class="btn btn-primary" onclick="closeSuccessModal()">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Floating Quick WhatsApp Button -->
+  <a href="https://wa.me/919876543210?text=Hello%20Vrinda%20Earth%20Naturals,%20I%20have%20a%20query%20regarding%20your%20herbal%20skincare%20products." target="_blank" class="floating-whatsapp-widget" title="Order on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="floating-tooltip">Order & Chat on WhatsApp</span>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

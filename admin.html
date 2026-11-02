@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Vrinda Earth Naturals</title>
+  <meta name="description" content="Manage products, MRP, images, website texts, and customer orders for Vrinda Earth Naturals.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Admin Login Lock Screen -->
+  <div class="admin-auth-overlay" id="adminAuthOverlay">
+    <div class="admin-auth-card">
+      <div class="auth-brand-logo">
+        <img src="assets/images/logo.png" alt="Vrinda Earth Naturals">
+      </div>
+      <h2>Vrinda Earth Naturals</h2>
+      <p class="auth-sub">Owner & Management Control Center</p>
+      
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label for="adminPinInput"><i class="fa-solid fa-lock"></i> Enter Admin Passcode / PIN</label>
+          <input type="password" id="adminPinInput" placeholder="Default PIN: 1234" required autocomplete="current-password">
+          <small class="pin-hint">Default Security PIN: <strong>1234</strong> (You can change it inside)</small>
+        </div>
+        <div class="auth-error-msg" id="authErrorMsg"></div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Unlock Admin Panel
+        </button>
+      </form>
+
+      <div class="back-to-store">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Return to Live Store</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Application Wrapper -->
+  <div class="admin-wrapper" id="adminWrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <img src="assets/images/logo.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-brand">
+          <h3>VRINDA EARTH</h3>
+          <span>Admin Portal</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="nav-item active" data-tab="productsTab">
+          <i class="fa-solid fa-box-open"></i>
+          <span>Products & Pricing</span>
+          <span class="badge" id="sidebarProductCount">0</span>
+        </button>
+        <button class="nav-item" data-tab="ordersTab">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Customer Orders</span>
+          <span class="badge highlight" id="sidebarOrderCount">0</span>
+        </button>
+        <button class="nav-item" data-tab="settingsTab">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Website Content & Text</span>
+        </button>
+        <button class="nav-item" data-tab="couponsTab">
+          <i class="fa-solid fa-tags"></i>
+          <span>Discount Coupons</span>
+        </button>
+        <button class="nav-item" data-tab="backupTab">
+          <i class="fa-solid fa-database"></i>
+          <span>Backup & Reset</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="btn-store-preview">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Store</span>
+        </a>
+        <button class="btn-logout" onclick="handleAdminLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Lock Panel</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <!-- Top Bar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <h2 id="currentTabTitle">Products & MRP Management</h2>
+          <span class="topbar-sub">Manage catalog items, selling price, MRP, images, and formulations</span>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-success" onclick="saveAllChangesLive()">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Save & Sync Live
+          </button>
+          <a href="index.html" target="_blank" class="btn btn-secondary">
+            <i class="fa-solid fa-eye"></i> Preview Store
+          </a>
+        </div>
+      </header>
+
+      <!-- TAB 1: PRODUCTS MANAGEMENT -->
+      <section class="admin-tab-content active" id="productsTab">
+        <div class="tab-toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="productSearchInput" placeholder="Search by name, category, or ingredients..." oninput="handleProductSearch(this.value)">
+          </div>
+          <div class="toolbar-actions">
+            <select id="categoryFilter" onchange="filterProductsByCategory(this.value)">
+              <option value="all">All Categories</option>
+              <option value="cleanser">Cleansers & Powders</option>
+              <option value="floral">Floral Toners</option>
+              <option value="activator">Activators</option>
+              <option value="combo">Combos</option>
+            </select>
+            <button class="btn btn-primary" onclick="openProductEditModal(null)">
+              <i class="fa-solid fa-plus"></i> Add New Product
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Table / Cards -->
+        <div class="products-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product Details</th>
+                <th>Category</th>
+                <th>Selling Price</th>
+                <th>MRP</th>
+                <th>Discount</th>
+                <th>Badge Tag</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 2: CUSTOMER ORDERS -->
+      <section class="admin-tab-content" id="ordersTab">
+        <div class="tab-toolbar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="orderSearchInput" placeholder="Search orders by customer name, phone, or ID..." oninput="handleOrderSearch(this.value)">
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-secondary" onclick="exportOrdersCSV()">
+              <i class="fa-solid fa-file-csv"></i> Export Orders
+            </button>
+            <button class="btn btn-danger" onclick="clearAllOrders()">
+              <i class="fa-solid fa-trash"></i> Clear Orders
+            </button>
+          </div>
+        </div>
+
+        <div class="orders-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer & Phone</th>
+                <th>Delivery Address</th>
+                <th>Items Ordered</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Quick Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: WEBSITE TEXT & BRANDING SETTINGS -->
+      <section class="admin-tab-content" id="settingsTab">
+        <form id="siteSettingsForm" onsubmit="handleSaveSettings(event)">
+          <div class="settings-grid">
+            
+            <!-- WhatsApp & Contact Settings -->
+            <div class="settings-card">
+              <div class="card-header">
+                <i class="fa-brands fa-whatsapp text-success"></i>
+                <h3>WhatsApp & Direct Contact Details</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="setWhatsApp">WhatsApp Business Number (With Country Code)</label>
+                  <input type="text" id="setWhatsApp" required placeholder="e.g. 919876543210">
+                  <small>Customers will send their direct orders and inquiries to this number.</small>
+                </div>
+                <div class="form-group">
+                  <label for="setPhone">Display Phone Number</label>
+                  <input type="text" id="setPhone" required placeholder="e.g. +91 98765 43210">
+                </div>
+                <div class="form-group">
+                  <label for="setEmail">Customer Support Email</label>
+                  <input type="email" id="setEmail" required placeholder="e.g. contact@vrindaearthnaturals.com">
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing & Shipping Rules -->
+            <div class="settings-card">
+              <div class="card-header">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Shipping & Delivery Charges</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="setFreeShip">Free Shipping Minimum Cart Value (₹)</label>
+                  <input type="number" id="setFreeShip" required placeholder="599">
+                  <small>Orders equal to or above this amount get free delivery.</small>
+                </div>
+                <div class="form-group">
+                  <label for="setStandardShip">Standard Courier Fee (₹)</label>
+                  <input type="number" id="setStandardShip" required placeholder="60">
+                </div>
+                <div class="form-group">
+                  <label for="setDeliveryDays">Estimated Delivery Time Text</label>
+                  <input type="text" id="setDeliveryDays" placeholder="3-5 Business Days across India">
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Section Text Customizer -->
+            <div class="settings-card full-width">
+              <div class="card-header">
+                <i class="fa-solid fa-paintbrush"></i>
+                <h3>Hero Section & Announcement Customizer</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="setAnnouncement">Top Announcement Bar Text</label>
+                  <input type="text" id="setAnnouncement" required placeholder="100% Pure Organic Ayurvedic Formulations • Handcrafted in Small Batches">
+                </div>
+                <div class="form-group">
+                  <label for="setHeroBadge">Hero Badge Tagline</label>
+                  <input type="text" id="setHeroBadge" placeholder="Royal Ayurvedic Skincare">
+                </div>
+                <div class="form-group">
+                  <label for="setHeroTitle">Hero Main Heading (HTML tags supported)</label>
+                  <input type="text" id="setHeroTitle" required placeholder="Experience the Power of Pure, Authentic Skincare">
+                </div>
+                <div class="form-group">
+                  <label for="setHeroDesc">Hero Description Text</label>
+                  <textarea id="setHeroDesc" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Leadership & Founders Details -->
+            <div class="settings-card full-width">
+              <div class="card-header">
+                <i class="fa-solid fa-crown text-gold"></i>
+                <h3>Founders & Leadership Information</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-row two-cols">
+                  <div class="form-group">
+                    <label for="setOwnerName">Owner Name</label>
+                    <input type="text" id="setOwnerName" placeholder="Shailja Shukla">
+                  </div>
+                  <div class="form-group">
+                    <label for="setOwnerRole">Owner Designation</label>
+                    <input type="text" id="setOwnerRole" placeholder="Owner & Master Formulator">
+                  </div>
+                </div>
+
+                <div class="form-row two-cols">
+                  <div class="form-group">
+                    <label for="setDirectorName">Management Director Name</label>
+                    <input type="text" id="setDirectorName" placeholder="Ambesh Shukla">
+                  </div>
+                  <div class="form-group">
+                    <label for="setDirectorRole">Director Designation</label>
+                    <input type="text" id="setDirectorRole" placeholder="Management Director">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="setFounderQuote">Founders' Quote / Philosophy</label>
+                  <textarea id="setFounderQuote" rows="2"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Admin Security PIN -->
+            <div class="settings-card">
+              <div class="card-header">
+                <i class="fa-solid fa-key"></i>
+                <h3>Admin Security PIN</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="setAdminPin">Change Admin Passcode</label>
+                  <input type="text" id="setAdminPin" placeholder="4-digit PIN (e.g. 1234)">
+                  <small>PIN required to enter this admin panel.</small>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="settings-actions">
+            <button type="submit" class="btn btn-primary btn-large">
+              <i class="fa-solid fa-floppy-disk"></i> Save Website Settings
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB 4: COUPONS & DISCOUNTS -->
+      <section class="admin-tab-content" id="couponsTab">
+        <div class="tab-toolbar">
+          <h3>Active Promotional Coupons</h3>
+          <button class="btn btn-primary" onclick="openAddCouponModal()">
+            <i class="fa-solid fa-plus"></i> Add New Coupon Code
+          </button>
+        </div>
+
+        <div class="coupons-grid" id="couponsGrid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- TAB 5: BACKUP & FACTORY RESET -->
+      <section class="admin-tab-content" id="backupTab">
+        <div class="backup-cards-grid">
+          <div class="settings-card">
+            <div class="card-header">
+              <i class="fa-solid fa-download"></i>
+              <h3>Export / Backup All Store Data</h3>
+            </div>
+            <div class="card-body">
+              <p>Download your complete catalog, products, prices, images, and website text as a JSON backup file on your computer.</p>
+              <button class="btn btn-primary" onclick="exportDataJSON()">
+                <i class="fa-solid fa-file-arrow-down"></i> Download JSON Backup
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="card-header">
+              <i class="fa-solid fa-upload"></i>
+              <h3>Restore from Backup</h3>
+            </div>
+            <div class="card-body">
+              <p>Upload a previously exported backup file to restore your products and settings.</p>
+              <input type="file" id="backupFileInput" accept=".json" onchange="importDataJSON(event)" style="display:none">
+              <button class="btn btn-secondary" onclick="document.getElementById('backupFileInput').click()">
+                <i class="fa-solid fa-file-arrow-up"></i> Upload JSON File
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-card danger-card">
+            <div class="card-header">
+              <i class="fa-solid fa-rotate-left"></i>
+              <h3>Reset to Factory Defaults</h3>
+            </div>
+            <div class="card-body">
+              <p>Reset all products, texts, and settings back to original Vrinda Earth Naturals defaults. Warning: This cannot be undone.</p>
+              <button class="btn btn-danger" onclick="confirmResetDefaults()">
+                <i class="fa-solid fa-triangle-exclamation"></i> Reset Store Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- PRODUCT EDIT / ADD MODAL -->
+  <dialog class="admin-modal" id="productEditModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="productModalTitle">Edit Product</h3>
+        <button class="btn-close-modal" onclick="closeProductEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="productEditForm" onsubmit="handleSaveProduct(event)">
+        <input type="hidden" id="editProductId">
+
+        <div class="form-grid two-cols">
+          <div class="form-group">
+            <label for="editProdName">Product Title / Name *</label>
+            <input type="text" id="editProdName" required placeholder="e.g. Herbal Face Wash Powder">
+          </div>
+
+          <div class="form-group">
+            <label for="editProdCategory">Category *</label>
+            <select id="editProdCategory" required>
+              <option value="cleanser">Cleansers & Powders</option>
+              <option value="floral">Floral Toners</option>
+              <option value="activator">Activators</option>
+              <option value="combo">Combo Packs</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid three-cols">
+          <div class="form-group">
+            <label for="editProdPrice">Selling Price (₹) *</label>
+            <input type="number" id="editProdPrice" required min="1" placeholder="349" oninput="calculateDiscountPreview()">
+          </div>
+
+          <div class="form-group">
+            <label for="editProdMrp">MRP Original Price (₹) *</label>
+            <input type="number" id="editProdMrp" required min="1" placeholder="499" oninput="calculateDiscountPreview()">
+          </div>
+
+          <div class="form-group">
+            <label>Calculated Discount</label>
+            <div class="discount-calc-preview" id="discountCalcPreview">30% OFF</div>
+          </div>
+        </div>
+
+        <div class="form-grid two-cols">
+          <div class="form-group">
+            <label for="editProdBadge">Badge Tag</label>
+            <input type="text" id="editProdBadge" placeholder="e.g. Hero Product, Best Seller, Save 38%">
+          </div>
+
+          <div class="form-group">
+            <label for="editProdRating">Rating (1.0 to 5.0)</label>
+            <input type="number" id="editProdRating" step="0.1" min="1" max="5" value="4.9">
+          </div>
+        </div>
+
+        <!-- Product Image Manager -->
+        <div class="image-uploader-section">
+          <label>Product Image</label>
+          <div class="image-input-options">
+            <div class="image-preview-box">
+              <img id="imagePreviewTarget" src="assets/images/face_wash_powder.jpg" alt="Preview">
+            </div>
+            <div class="image-controls">
+              <div class="form-group">
+                <label for="editProdImage">Image File Path or Web URL</label>
+                <input type="text" id="editProdImage" required placeholder="assets/images/face_wash_powder.jpg" oninput="updateImagePreview(this.value)">
+              </div>
+              <div class="form-group">
+                <label>Or Upload New Image from Computer:</label>
+                <input type="file" id="localImageUpload" accept="image/*" onchange="handleLocalImageUpload(event)">
+              </div>
+              <div class="preset-images">
+                <span>Quick Choose:</span>
+                <button type="button" class="btn-preset" onclick="setPresetImage('assets/images/face_wash_powder.jpg')">Face Wash</button>
+                <button type="button" class="btn-preset" onclick="setPresetImage('assets/images/rose_water.jpg')">Rose Water</button>
+                <button type="button" class="btn-preset" onclick="setPresetImage('assets/images/magic_activator.jpg')">Activator</button>
+                <button type="button" class="btn-preset" onclick="setPresetImage('assets/images/products_showcase.jpg')">Trio Combo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editProdShortDesc">Short Summary Description *</label>
+          <textarea id="editProdShortDesc" rows="2" required placeholder="1-2 sentences highlighting benefits"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editProdIngredients">Botanical Ingredients (Comma separated) *</label>
+          <textarea id="editProdIngredients" rows="2" required placeholder="Multani Mitti, Sandalwood, Neem, Rose Petals..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editProdHowToUse">How to Use & Ayurvedic Ritual Instructions *</label>
+          <textarea id="editProdHowToUse" rows="2" required placeholder="Step-by-step application instructions"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="editProdBenefits">Key Benefits (One per line or comma-separated)</label>
+          <textarea id="editProdBenefits" rows="2" placeholder="Controls oil & acne, tightens pores..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeProductEditModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-check"></i> Save Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ADD COUPON MODAL -->
+  <dialog class="admin-modal" id="couponModal">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>Add Promo Coupon Code</h3>
+        <button class="btn-close-modal" onclick="closeCouponModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="couponForm" onsubmit="handleSaveCoupon(event)">
+        <div class="form-group">
+          <label for="couponCode">Coupon Code (Uppercase)</label>
+          <input type="text" id="couponCode" required placeholder="e.g. DIWALI20" style="text-transform: uppercase;">
+        </div>
+        <div class="form-group">
+          <label for="couponType">Discount Type</label>
+          <select id="couponType" required>
+            <option value="percentage">Percentage (%) Discount</option>
+            <option value="flat">Flat Cash (₹) Discount</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="couponValue">Discount Amount / Percentage</label>
+          <input type="number" id="couponValue" required min="1" placeholder="e.g. 20 for 20%">
+        </div>
+        <div class="form-group">
+          <label for="couponLabel">Display Label</label>
+          <input type="text" id="couponLabel" required placeholder="e.g. 20% Festive Savings">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeCouponModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Coupon</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
